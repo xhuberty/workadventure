@@ -127,8 +127,8 @@ export class RoomConnection implements RoomConnection {
             } else if (message.hasRoomjoinedmessage()) {
                 const roomJoinedMessage = message.getRoomjoinedmessage() as RoomJoinedMessage;
 
-                const users: Array<MessageUserJoined> = roomJoinedMessage.getUserList().map(this.toMessageUserJoined.bind(this));
-                const groups: Array<GroupCreatedUpdatedMessageInterface> = roomJoinedMessage.getGroupList().map(this.toGroupCreatedUpdatedMessage.bind(this));
+                //const users: Array<MessageUserJoined> = roomJoinedMessage.getUserList().map(this.toMessageUserJoined.bind(this));
+                //const groups: Array<GroupCreatedUpdatedMessageInterface> = roomJoinedMessage.getGroupList().map(this.toGroupCreatedUpdatedMessage.bind(this));
                 const items: { [itemId: number] : unknown } = {};
                 for (const item of roomJoinedMessage.getItemList()) {
                     items[item.getItemid()] = JSON.parse(item.getStatejson());
@@ -138,8 +138,8 @@ export class RoomConnection implements RoomConnection {
                 this.tags = roomJoinedMessage.getTagList();
 
                 this.dispatch(EventMessage.START_ROOM, {
-                    users,
-                    groups,
+                    //users,
+                    //groups,
                     items
                 });
             } else if (message.hasErrormessage()) {
@@ -199,7 +199,7 @@ export class RoomConnection implements RoomConnection {
         const positionMessage = new PositionMessage();
         positionMessage.setX(Math.floor(x));
         positionMessage.setY(Math.floor(y));
-        let directionEnum: PositionMessage.DirectionMap[keyof PositionMessage.DirectionMap];
+        let directionEnum: Direction;
         switch (direction) {
             case 'up':
                 directionEnum = Direction.UP;

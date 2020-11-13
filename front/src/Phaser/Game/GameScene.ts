@@ -516,7 +516,7 @@ export class GameScene extends ResizableScene implements CenterListener {
 
             //this.connection.emitPlayerDetailsMessage(gameManager.getPlayerName(), gameManager.getCharacterSelected())
             connection.onStartRoom((roomJoinedMessage: RoomJoinedMessageInterface) => {
-                this.initUsersPosition(roomJoinedMessage.users);
+                //this.initUsersPosition(roomJoinedMessage.users);
                 this.connectionAnswerPromiseResolve(roomJoinedMessage);
                 // Analyze tags to find if we are admin. If yes, show console.
                 if (this.connection.hasTag('admin')) {
