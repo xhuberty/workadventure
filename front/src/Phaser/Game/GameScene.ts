@@ -60,6 +60,9 @@ import {ResizableScene} from "../Login/ResizableScene";
 import {Room} from "../../Connexion/Room";
 import {jitsiFactory} from "../../WebRtc/JitsiFactory";
 import {urlManager} from "../../Url/UrlManager";
+import {MenuScene} from "../Menu/MenuScene";
+import {ClickButton} from "../Components/ClickButton";
+import {menuManager} from "../Menu/MenuManager";
 
 export interface GameSceneInitInterface {
     initPosition: PointInterface|null
@@ -309,6 +312,10 @@ export class GameScene extends ResizableScene implements CenterListener {
         const mapDirUrl = this.MapUrlFile.substr(0, this.MapUrlFile.lastIndexOf('/'));
         this.mapFile.tilesets.forEach((tileset: ITiledTileSet) => {
             this.Terrains.push(this.Map.addTilesetImage(tileset.name, `${mapDirUrl}/${tileset.image}`, tileset.tilewidth, tileset.tileheight, tileset.margin, tileset.spacing/*, tileset.firstgid*/));
+        });
+
+        this.input.keyboard.on('keyup-ENTER', () => {
+            menuManager.isOpened() ? menuManager.closeMenu(this) : menuManager.openMenu(this);
         });
 
         //permit to set bound collision
@@ -1197,4 +1204,6 @@ export class GameScene extends ResizableScene implements CenterListener {
             });
         }))
     }
+    
+
 }
