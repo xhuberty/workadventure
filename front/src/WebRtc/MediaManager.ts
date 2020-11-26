@@ -486,7 +486,7 @@ export class MediaManager {
         if(!element){
             return;
         }
-        element.classList.add('active')
+        element.classList.add('active') //todo: why does a method 'disable' add a class 'active'?
     }
     
     enabledMicrophoneByUserId(userId: number){
@@ -494,7 +494,7 @@ export class MediaManager {
         if(!element){
             return;
         }
-        element.classList.remove('active')
+        element.classList.remove('active') //todo: why does a method 'enable' remove a class 'active'?
     }
     
     disabledVideoByUserId(userId: number) {
@@ -519,7 +519,7 @@ export class MediaManager {
         }
     }
 
-    addStreamRemoteVideo(userId: string, stream : MediaStream){
+    addStreamRemoteVideo(userId: string, stream : MediaStream): void {
         const remoteVideo = this.remoteVideo.get(userId);
         if (remoteVideo === undefined) {
             throw `Unable to find video for ${userId}`;
@@ -686,10 +686,9 @@ export class MediaManager {
      * Here, every 30 seconds, we are "reseting" the streams and sending again the constraints to the other peers via the data channel again (see SimplePeer::pushVideoToRemoteUser)
     **/
     private pingCameraStatus(){
-        setTimeout(() => {
+        setInterval(() => {
             console.log('ping camera status');
             this.triggerUpdatedLocalStreamCallbacks(this.localStream);
-            this.pingCameraStatus();
         }, 30000);
     }
 

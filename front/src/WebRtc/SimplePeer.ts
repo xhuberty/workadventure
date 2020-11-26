@@ -1,7 +1,6 @@
 import {
     WebRtcDisconnectMessageInterface,
     WebRtcSignalReceivedMessageInterface,
-    WebRtcStartMessageInterface
 } from "../Connexion/ConnexionModels";
 import {
     mediaManager,
@@ -204,8 +203,6 @@ export class SimplePeer {
 
     /**
      * This is triggered twice. Once by the server, and once by a remote client disconnecting
-     *
-     * @param userId
      */
     private closeConnection(userId : number) {
         try {
@@ -313,10 +310,6 @@ export class SimplePeer {
         }
     }
 
-    /**
-     *
-     * @param userId
-     */
     private pushVideoToRemoteUser(userId : number) {
         try {
             const PeerConnection = this.PeerConnectionArray.get(userId);
