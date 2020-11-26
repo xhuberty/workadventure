@@ -109,7 +109,7 @@ export class MediaManager {
         this.previousConstraint = JSON.parse(JSON.stringify(this.constraintsMedia));
         this.pingCameraStatus();
 
-        this.checkActiveUser();
+        //this.checkActiveUser(); //todo: desactivated in case of bug
 
         this.discussionManager = new DiscussionManager(this,'');
     }
